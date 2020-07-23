@@ -1,0 +1,27 @@
+Authors:
+ - Jacob Quon
+
+Description:
+This is a static simple web (HTTP 1.1) server that is is run through command line. 
+It accepts GET and HEAD requests from a web browser and uses a thread pool to invoke 
+a worker thread which processes the request. 
+
+The request is paresed and the worker thread returns either the file or a listing
+of files in a directory depending on whether a file or a directory was requested.
+It supports the following mime types: image/jpeg, image/png, image/gif, text/plain, 
+text/html, and video/mp4.
+
+Security measures were implemented to ensure users could not access files outside
+the root directory.
+
+There are 2 special URLs: /shutdown and /control. /shutdown shuts down the server
+immediately, making sure to properly abort threads currently handling requests.
+/control returns a control panel which contains my name and pennID, a list of all
+threads in the pool and their statuses, and a button that shuts down the server.
+
+Instructions for Running:
+	1. Compile the program by navigating to the directory and typing "mvn clean install"
+	2. Run the created jar in target with the following parameters:
+		1. Port to listen for connections on
+		2. Root directory of the static web pages
+
